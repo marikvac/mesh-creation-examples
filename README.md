@@ -21,7 +21,7 @@ If you have a STL file and want to turn it into a computational mesh, you can st
 ## How to use this repository
 
 A tutorial text presented in a directory ***doplnit*** is divided into files, which one can think of as chapters in a novel.
-The steps come one after another and can not be ommited.
+The steps come one after another and can not be omitted.
 Together with this text, example scripts are presented. They always present one small step. Even though we try to use comments in code to make
 it readable, additional ideas are presented in tutorial text. 
 
