@@ -55,3 +55,17 @@ The choice of geometry kernel will change only how your elements are represented
 
 
 ### Loading an STL into Gmsh
+Before even loading your STL file into Gmsh, please check that it has the qualities needed to continue our process. Namely the most important for us are water tightness of the surface and that edges don't intersect one another.
+How to check this is written in a tutorial text on using the MeshLab.
+
+Gmsh has implemented a function that allows us to load STL files into Built-in kernel.
+```python
+import gmsh
+
+gmsh.initialize()
+gmsh.merge("stl/my_model.stl")
+
+node_tags, node_coords, node_param = gmsh.model.mesh.getNodes()
+print(f"Number of nodes: {len(node_tags)}")
+```
+This way we will add elements that are present in the STL file into Gmsh current model. You can see that the function that allows us to see the element tags is inside the gmsh.model.mesh class. That is because they are now presenting a nodes in an actual mesh as well as 
