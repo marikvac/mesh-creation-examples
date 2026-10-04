@@ -9,8 +9,9 @@ FEM solver.
 import gmsh
 
 gmsh.initialize()
-domain = gmsh.model.occ.addRectangle(0,0,0,10,5)  #We don't have to give the tag explicitly here
-gmsh.model.occ.synchronize()  #Don't forget to synchronize when adding elements
+domain = gmsh.model.occ.addRectangle(0,0,0,10,5)  
+gmsh.model.occ.synchronize()  
+## Don't forget to synchronize when adding elements
 
 boundary = gmsh.model.getBoundary(dimTags=[(2,domain)])
 boundary_tags = [side[1] for side in boundary]
@@ -21,7 +22,7 @@ gmsh.model.setPhysicalName(dim=2, tag=domain_group, name="Domain")
 boundary_group = gmsh.model.addPhysicalGroup(dim=1, tags=boundary_tags)
 gmsh.model.setPhysicalName(dim=1, tag=boundary_group, name="Boundary")
 
-#Inspecting the Physical groups
+## Inspecting the Physical groups
 print(f"Physical groups: {gmsh.model.getPhysicalGroups()}")
 
 gmsh.model.mesh.generate(dim=2)

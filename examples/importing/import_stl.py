@@ -68,6 +68,6 @@ print(f"Number of 3D Volume entities: {len(volume_entities)}")
 
 gmsh.model.mesh.generate(dim=3)
 '''This time we generate a 3-dimensional mesh.'''
-gmsh.write("volume_mesh.msh")
+gmsh.write("msh_files/volume_mesh.msh")
 
 gmsh.finalize()

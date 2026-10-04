@@ -1,0 +1,29 @@
+======================================================================
+GMSH MODEL INFORMATION
+======================================================================
+GEOMETRY
+Number of points : 746
+Number of curves : 2232
+Number of surfaces : 1488
+Number of volumes : 1
+
+BOUNDING BOX
+X min : -7.0000001
+X max : 7.0000001
+Y min : -6.9804267
+Y max : 6.9804267
+Z min : -1e-07
+Z max : 7.0000001
+
+X dimension : 14
+Y dimension : 13.960853
+Z dimension : 7.0000002
+
+Bounding box center:
+ X : 0
+ Y : 0
+ Z : 3.5
+
+MESH
+Number of mesh nodes : 746
+

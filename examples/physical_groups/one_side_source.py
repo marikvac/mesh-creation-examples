@@ -18,13 +18,13 @@ for coordinates in points_coordinates:
         x=coordinates[0],y=coordinates[1],z=coordinates[2]
     ))
 print(points)
-# We can store the points we create in a list like this.
+## We can store the points we create in a list like this.
 
 lines_start_end = []
 for i in range(len(points)):
     lines_start_end.append([points[i],points[(i+1) % len(points)]])
 print(lines_start_end)
-# And we then turn them into a list to prepare us for creation of lines in geo kernel
+## And we then turn them into a list to prepare us for creation of lines in geo kernel
 
 lines = []
 for line in lines_start_end:
@@ -32,28 +32,28 @@ for line in lines_start_end:
         gmsh.model.geo.addLine(startTag=line[0], endTag=line[1])
         )
 print(lines)
-# In our example the number of points and lines is the same. We are also working in a completely
-# new model. The tags of points and of lines will both be [1,2,3,4].
-# We can't underestimate the importance of creating a code that works independently on tags.
+## In our example the number of points and lines is the same. We are also working in a completely
+## new model. The tags of points and of lines will both be [1,2,3,4].
+## We can't underestimate the importance of creating a code that works independently on tags.
 
 #boundary = gmsh.model.geo.addCurveLoop(curveTags=lines)
 boundary = gmsh.model.geo.addCurveLoop(curveTags=[1,3,2,4]) 
-# It does not matter in which order you give the lines, but they must form a closed loop.
-# Alternatively one can use a function gmsh.model.geo.addCurveLoops(), which is advanced.
-# It can find loops out of a group of lines, if they form atleast one closed loop.
+## It does not matter in which order you give the lines, but they must form a closed loop.
+## Alternatively one can use a function gmsh.model.geo.addCurveLoops(), which is advanced.
+## It can find loops out of a group of lines, if they form atleast one closed loop.
 
 surface = gmsh.model.geo.addPlaneSurface(wireTags=[boundary])
 
-# Don't forget to synchronize, this has to be done even in geo kernel!
+## Don't forget to synchronize, this has to be done even in geo kernel!
 gmsh.model.geo.synchronize()
 print(f"entities: {gmsh.model.getEntities()}")
-# We can now move on to adding the needed physical groups. It will be four physical groups in total.
-# We have to put inlet and outlet into separate groups. We then have to create a physical group
-# for the rest of the walls, where we can impose zero-flux boundary condition.
-# Finally we will create a 2D Physical group for our domain where the fluid will flow.
+## We can now move on to adding the needed physical groups. It will be four physical groups in total.
+## We have to put inlet and outlet into separate groups. We then have to create a physical group
+## for the rest of the walls, where we can impose zero-flux boundary condition.
+## Finally we will create a 2D Physical group for our domain where the fluid will flow.
 
-# We know that the outlet will be a curve with a tag=2 and inlet is a curve with a tag=4,
-# because we have constructed it this way.
+## We know that the outlet will be a curve with a tag=2 and inlet is a curve with a tag=4,
+## because we have constructed it this way.
 outlet = gmsh.model.addPhysicalGroup(dim=1, tags=[2])
 inlet = gmsh.model.addPhysicalGroup(dim=1, tags=[4])
 walls = gmsh.model.addPhysicalGroup(dim=1, tags=[1,3])
