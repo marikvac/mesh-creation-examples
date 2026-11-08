@@ -8,6 +8,9 @@ In this chapter, we cover the first part of the process of turning MRI image int
 1. Know how to use command line
 
 ## We will need 
+1. OS: Ubuntu 20.04 or 22.04 (native or via WSL)
+1. Enough memory (FreeSurfer outputs are heavy)
+1. A FreeSurfer license
 
 
 ## BrainWeb: Simulated Brain Database
@@ -46,9 +49,9 @@ If the file you downloaded looks like this *freesurfer.tar.gz*, it is a compress
 Perfect, now that we have installed FreeSurfer, we can move on to the next step and configure the environment for using it. If your archive has been unpacked at */home/myself/freesurfer*, you have to add the following lines to the end of a file named **.bashrc** in your home directory.
 
 ```bash
-export FREESURFER_HOME =/ home /me/ freesurfer
-export SUBJECTS_DIR = $FREESURFER_HOME / subjects
-source $FREESURFER_HOME / SetUpFreeSurfer .sh
+export FREESURFER_HOME=/home/me/freesurfer
+export SUBJECTS_DIR=$FREESURFER_HOME/subjects
+source $FREESURFER_HOME/SetUpFreeSurfer.sh
 ```
 
 Please note that to use FreeSurfer, you have to acquire a free license. To obtain it, [register](https://surfer.nmr.mgh.harvard.edu/fswiki/DownloadAndInstall) on their website.
@@ -95,3 +98,5 @@ After segmentation, the folder *sub001* will have approximately 380 MB.
 The following section heavily depends on whether your are using FEniCS or Firedrake for your FEM calculations. That is because there are differences in supported mesh file formats.
 
 This leads us to the biggest problem and that is SVMTk does not support generating meshes in a format that is useful for Firedrake. That is why we have to use GMSH to create our mesh.
+
+This part is described mainly using the example files. They are all located in the *examples* folder. Not only are there example files focusing on one functionality needed. Additionally, the directory includes two complete, end-to-end examples to guide you through the entire workflow from raw data to final mesh.
